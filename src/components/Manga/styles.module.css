@@ -1,0 +1,29 @@
+.item {
+    width: 337px;
+    column-gap: 5px;
+    display: flex;
+    flex-direction: column ;
+    height: 600px;
+}
+.title {
+    font-size: 14px;
+    gap: 2px;
+    color: #d2d2d2;
+}
+.image {
+    width: 300px;
+    height: 535px;
+}
+.views {
+    font-size: 12px ;
+    color: #6c7072;
+}
+.chapter {
+    font-size: 12px;
+}
+.wrapper {
+    width: 300px;
+    height: 535px;
+    background-color: #f2f4f5;
+    flex-shrink: 0;
+}

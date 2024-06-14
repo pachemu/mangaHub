@@ -1,0 +1,12 @@
+.wrapper {
+    height: auto;
+    position: relative;
+    background-color: #f2f4f5;
+    display: flex;
+    justify-content: center;
+}
+.image {
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
