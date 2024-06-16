@@ -17,4 +17,5 @@ const Manga = ({ item }) => {
     );
 };
 
+
 export default Manga;

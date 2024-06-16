@@ -1,0 +1,33 @@
+.pagination {
+    display: flex;
+    width: 100%;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow {
+    border-radius: 50%;
+    background-color: #7e7e7e;
+    border: none;
+    cursor: pointer;
+}
+
+.number {
+    border: none;
+    border-radius: 50%;
+    background-color: #d0d0d0;
+    margin: 4px;
+    cursor: pointer;
+}
+
+.number.active {
+    background-color: #7e7e7e;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
