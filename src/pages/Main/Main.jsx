@@ -5,6 +5,7 @@ import {getMangaList} from '../../api/apiNews';
 import MangaList from '../../components/MangaList/MangaList';
 import Skeleton from "../../components/Skeleton/Skeleton.jsx";
 
+
 const Main = () => {
     const [mangaList, setMangaList] = useState([]);
     // eslint-disable-next-line no-unused-vars

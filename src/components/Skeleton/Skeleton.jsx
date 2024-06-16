@@ -15,4 +15,5 @@ const Skeleton = ({count = 1, type = 'banner'}) => {
     )
 }
 
+
 export default Skeleton;
