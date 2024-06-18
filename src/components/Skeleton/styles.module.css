@@ -32,6 +32,17 @@
     animation: pulse 1.4s ease-in-out infinite;
 }
 
+.category {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 32px;
+    background-color: #f2f4f5;
+    width: 60px;
+    height: 25px;
+}
+
 @keyframes pulse {
     0% {
         background-position: 0% 0%;
