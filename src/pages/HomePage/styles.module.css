@@ -1,0 +1,24 @@
+.homePage {
+    width: 100vw;
+    height: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    align-items: center;
+    border-radius: 32px;
+    justify-content: center;
+    display: flex;
+    background-color: #f2f4f5;
+    height: 20vw;
+    font-size: calc(40vw - 30vw);
+
+}
+
+.title {
+    font-size: calc(40vw - 36vw);
+    color: #ffba42;
+}
+

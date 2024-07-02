@@ -1,0 +1,25 @@
+.results {
+    border-radius: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1040;
+    width: 70vw;
+    flex-direction: column;
+}
+
+.result {
+    display: flex;
+    flex-direction: row;
+    border: #f2f4f5 2px solid;
+    width: 70vw;
+    background-color: rgba(108, 108, 108, 0.5);
+}
+
+.image {
+    height: 100px;
+    width: 70px;
+}
+
+.title {;
+}

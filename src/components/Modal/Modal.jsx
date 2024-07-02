@@ -1,11 +1,15 @@
 /* eslint-disable react/prop-types */
 import styles from './styles.module.css';
 import {forwardRef} from 'react';
+import {NavLink} from "react-router-dom";
 
-const Modal = forwardRef(({item, selectedCategory, setSelected}, ref) => {
+// eslint-disable-next-line react/display-name
+const Modal = forwardRef(({item, selectedCategory, setSelected, currentPage}, ref) => {
     return (
         <div className={styles.modal} ref={ref}>
             {item.map((category) => (
+                // eslint-disable-next-line react/jsx-key
+                <NavLink to={`/${currentPage}/${category}`}>
                 <button
                     onClick={() => setSelected(category)}
                     className={selectedCategory === category ? styles.active : styles.item}
@@ -13,6 +17,7 @@ const Modal = forwardRef(({item, selectedCategory, setSelected}, ref) => {
                 >
                     {category}
                 </button>
+                </NavLink>
             ))}
         </div>
     );

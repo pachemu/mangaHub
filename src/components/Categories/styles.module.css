@@ -5,8 +5,8 @@
     align-items: flex-start;
     box-sizing: border-box;
     overflow-x: auto;
-    white-space: nowrap;
     scrollbar-width: none;
+    flex-wrap: wrap;
 }
 
 .item, .active {
@@ -16,12 +16,13 @@
     border: none;
     border-radius: 32px;
     background-color: #f2f4f5;
+    cursor: pointer;
 }
 
 .active {
     color: #6b4eff;
     background-color: #f2f4f5;
-
+    cursor: auto;
 }
 
 ::-webkit-scrollbar {
@@ -37,4 +38,8 @@
     background-color: #f2f4f5;
     max-width: 50px;
     height: 44px;
+}
+
+.addCategories {
+    width: 100%;
 }

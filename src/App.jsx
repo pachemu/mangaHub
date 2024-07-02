@@ -1,15 +1,10 @@
-import Header from "./components/Header/Header"
-import Main from "./pages/Main/Main"
+import {RouterProvider} from "react-router-dom";
+import appRouter from "./appRouter.jsx";
 
 function App() {
     return (
         <>
-            <Header/>
-            <div className='container'>
-                <Main/>
-            </div>
-
-            
+            <RouterProvider router={appRouter}/>
         </>
     )
 }
