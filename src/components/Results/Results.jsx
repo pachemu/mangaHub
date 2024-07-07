@@ -3,7 +3,10 @@ import {Link} from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const Results = ({results}) => {
-    console.log(results)
+    if (!results) {
+        return;
+    }
+    // eslint-disable-next-line react/prop-types
     return (
         <div className={styles.results}>
             {/* eslint-disable-next-line react/prop-types */}
@@ -20,12 +23,6 @@ const Results = ({results}) => {
 
             ))}
         </div>
-        // <div className={styles.results}>
-        //     {results.map(result => (
-        //         <div key={result.id} className={styles.result}>
-        //             <img src={result.image} alt={result.title} />
-        //             <p>{result.title}</p>
-        //         </div>
     )
 }
 

@@ -6,7 +6,7 @@ const BaseLayout = () => {
         <div>
             <Header/>
             <main>
-                <Outlet/> {/* Здесь будут отображаться дочерние маршруты */}
+                <Outlet/>
             </main>
             <footer>Footer Component</footer>
         </div>

@@ -1,11 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, Navigate} from "react-router-dom";
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import Main from "./pages/Main/Main.jsx";
 import BaseLayout from "./layouts/BaseLayout.jsx";
 import {MangaPage} from "./pages/news/ui/index.js";
-import HomePage from "./pages/HomePage/HomePage.jsx";
 
 const appRouter = createBrowserRouter([
     {
@@ -15,7 +14,7 @@ const appRouter = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <HomePage/>,
+                element: <Navigate to={'/1/all'} replace={true}/>
             },
             {
                 path: "/manga/:id",

@@ -18,7 +18,7 @@ const Search = ({setSearchParams, postQuery}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!search || search.trim() === '') {
-            alert('Please enter a search query.');
+            setResults(null)
             return;
         }
 

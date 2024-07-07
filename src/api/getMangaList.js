@@ -1,14 +1,10 @@
 import axios from 'axios';
 
-export const getMangaList = async (page = 3, category) => {
+export const getMangaList = async (params) => {
     try {
         const response = await axios.get('/api/mangaList', {
-            params: {
-                page,
-                category
-            }
+            params: params
         });
-        // console.log(response.data.metaData.category)
         return response.data;
     } catch (error) {
         console.error('Error fetching manga list:', error);

@@ -1,104 +1,52 @@
+import {useMemo} from 'react';
+import {useParams, useSearchParams} from "react-router-dom";
+import {useFetch} from "../../helpers/hooks/useFetch.js";
+import {getCategories, getMangaList} from '../../api/getMangaList.js';
 import styles from './styles.module.css';
 import Banner from '../../components/Banner/Banner';
-// eslint-disable-next-line no-unused-vars
-import React, {useEffect, useState} from 'react';
-import {getCategories, getMangaList} from '../../api/getMangaList.js';
 import MangaList from '../../components/MangaList/MangaList';
-import Skeleton from "../../components/Skeleton/Skeleton.jsx";
 import Pagination from "../../components/Pagination/pagination.jsx";
 import Categories from "../../components/Categories/categories.jsx";
-import {useParams, useSearchParams} from "react-router-dom";
 import Search from "../../components/Search/Search.jsx";
+import {TOTAL_PAGES} from "../../constants/constants.js";
 
 const Main = () => {
-    const [mangaList, setMangaList] = useState([]);
-    const [isLoading, setLoaded] = useState(true);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [categoriesList, setCategoriesList] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState('all');
-    const totalPages = 100;
-    let {page, category} = useParams()
+    let {page, category} = useParams();
 
-    const dataCache = {};
+    // Мемоизация параметров для useFetch
+    const mangaListParams = useMemo(() => ({
+        page: page || 1,
+        category: category || 'all',
+    }), [page, category]);
 
-    const fetchMangaList = async (page, category) => {
-        const cacheKey = `${category}-${page}`;
-        if (dataCache[cacheKey]) {
-            setLoaded(false);
-            return;
-        }
+    const {data, error, isLoading} = useFetch(getMangaList, mangaListParams);
 
-        try {
-            setLoaded(true);
-            const data = await getMangaList(page, category);
-            setMangaList(data.mangaList);
-            setLoaded(false);
-        } catch (error) {
-            console.error('Error fetching manga list:', error);
-        }
-    };
+    const {data: dataCategories} = useFetch(getCategories);
 
-    const fetchCategories = async () => {
-        try {
-            const data = await getCategories();
-            setCategoriesList([...data].map(obj => obj.id));
-        } catch (error) {
-            console.error('Error fetching manga list:', error);
-        }
-    };
+    const [searchParams, setSearchParams] = useSearchParams();
+    const postQuery = searchParams.get('post');
 
-    useEffect(() => {
-        fetchMangaList(page, category);
-    }, [currentPage, selectedCategory]);
-
-    useEffect(() => {
-        fetchCategories();
-    }, []);
-
-    const handleNextPage = () => {
-        setCurrentPage(page + 1);
-    };
-
-    const handlePreviousPage = () => {
-        setCurrentPage(page - 1);
-    };
-
-    const handlePageClick = (page) => {
-        setCurrentPage(page);
-    };
-
-    const [searchParams, setSearchParams] = useSearchParams()
-    const postQuery = searchParams.get('post')
     return (
         <main className={styles.main}>
             <Search setSearchParams={setSearchParams} postQuery={postQuery}/>
-            {!isLoading && mangaList.length > 0 ? (<Banner item={mangaList[0]}/>) : (<Skeleton count={1}/>)}
-            {!isLoading ? (
+            <Banner isLoading={isLoading} item={data.mangaList}/>
+            {dataCategories && (
                 <Categories
-                    categories={categoriesList}
-                    setSelected={setSelectedCategory}
-                    selectedCategory={selectedCategory}
+                    isLoading={isLoading}
+                    categories={dataCategories}
+                    selectedCategory={category}
                     currentPage={page}
                 />
-            ) : (
-                <Skeleton count={20} type={'categories'}/>
             )}
             <Pagination
-                totalPages={totalPages}
-                handleNextPage={handleNextPage}
-                handlePreviousPage={handlePreviousPage}
-                handlePageClick={handlePageClick}
+                totalPages={TOTAL_PAGES}
                 category={category}
                 page={page}
             />
-            {isLoading ? (<Skeleton count={24} type={'item'}/>) : (<MangaList manga={mangaList}/>)}
+            <MangaList isLoading={isLoading} manga={data.mangaList}/>
             <Pagination
                 category={category}
-                totalPages={totalPages}
-                handleNextPage={handleNextPage}
-                handlePreviousPage={handlePreviousPage}
-                handlePageClick={handlePageClick}
-                currentPage={currentPage}
+                totalPages={TOTAL_PAGES}
                 page={page}
             />
         </main>
