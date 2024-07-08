@@ -13,5 +13,5 @@ const MangaList = ({manga}) => {
 }
 
 
-const MangaListWithSkeleton = withSkeleton({Component: MangaList, type: 'item', count: 24});
+const MangaListWithSkeleton = withSkeleton({Component: MangaList, type: 'item', count: 23});
 export default MangaListWithSkeleton

@@ -2,13 +2,16 @@ import styles from './styles.module.css';
 import {useOnClickOutside} from "../../helpers/hooks/useClickOnOutside.js";
 import Modal from "../Modal/Modal.jsx";
 import {useRef, useState} from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useSearchParams} from "react-router-dom";
 import withSkeleton from "../../helpers/hocs/withSkeleton.jsx";
+import FilterType from "../FilterType/FilterType.jsx";
 
 // eslint-disable-next-line react/prop-types
 const Categories = ({categories, selectedCategory, currentPage}) => {
     const modalRef = useRef(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [searchParams, setSearchParams] = useSearchParams()
+    const postQuery = searchParams.get('type')
 
     const closeModal = () => {
         setIsModalOpen(false);
@@ -36,6 +39,8 @@ const Categories = ({categories, selectedCategory, currentPage}) => {
                     currentPage={currentPage}
                 />}
             </div>
+            <FilterType
+                setSearchParams={setSearchParams}/>
         </div>
     );
 };

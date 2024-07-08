@@ -11,19 +11,20 @@ import Search from "../../components/Search/Search.jsx";
 import {TOTAL_PAGES} from "../../constants/constants.js";
 
 const Main = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     let {page, category} = useParams();
+    const type = searchParams.get('type') || 'topview';
 
-    // Мемоизация параметров для useFetch
     const mangaListParams = useMemo(() => ({
         page: page || 1,
         category: category || 'all',
-    }), [page, category]);
+        type: type || 'newest'
+    }), [page, category, type]);
 
     const {data, error, isLoading} = useFetch(getMangaList, mangaListParams);
 
     const {data: dataCategories} = useFetch(getCategories);
 
-    const [searchParams, setSearchParams] = useSearchParams();
     const postQuery = searchParams.get('post');
 
     return (

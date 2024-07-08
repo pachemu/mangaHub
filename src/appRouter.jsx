@@ -21,8 +21,13 @@ const appRouter = createBrowserRouter([
                 element: <MangaPage/>
             },
             {
+                path: '/:page',
+                element: <Navigate to={'/1/all'} replace={true}/>
+            },
+            {
                 path: "/:page/:category",
                 element: <Main/>
+
             },
         ],
     },

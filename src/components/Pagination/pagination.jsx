@@ -26,7 +26,7 @@ const Pagination = ({
             <div className={styles.list}>
                 {pages.map((page) => (
                     // eslint-disable-next-line react/jsx-key
-                    <NavLink to={`/${page}/${category}`}>
+                    <NavLink to={`/${page}/${category}`} key={page}>
                     <button
                         key={page}
                         className={`${styles.number} ${page === currentPage ? styles.active : ''}`}

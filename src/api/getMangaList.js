@@ -2,9 +2,10 @@ import axios from 'axios';
 
 export const getMangaList = async (params) => {
     try {
-        const response = await axios.get('/api/mangaList', {
+        const response = await axios.get(`/api/mangaList`, {
             params: params
         });
+        await console.log(response)
         return response.data;
     } catch (error) {
         console.error('Error fetching manga list:', error);
@@ -17,7 +18,6 @@ export const getCategories = async () => {
         const response = await axios.get('/api/mangaList', {
             params: {}
         });
-        // console.log(response)
         return response.data.metaData.category;
     } catch (error) {
         console.error('Error fetching manga list:', error);
