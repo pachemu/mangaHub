@@ -1,6 +1,6 @@
 /* Указываем box sizing */
 
-.contaier {
+.container {
   padding: 24px;
   min-height: 100vw;
 }
@@ -82,4 +82,8 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+body {
+    background-color: #1e1e1e;
 }

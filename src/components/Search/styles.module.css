@@ -1,0 +1,19 @@
+.search {
+    border-radius: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.form {
+    background-color: white;
+    width: 30vw;
+
+}
+
+.input {
+    border: none;
+    width: inherit;
+}

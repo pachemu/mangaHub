@@ -1,0 +1,46 @@
+.categories {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    align-items: flex-start;
+    box-sizing: border-box;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-wrap: wrap;
+}
+
+.item, .active {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 32px;
+    background-color: #f2f4f5;
+    cursor: pointer;
+}
+
+.active {
+    color: #6b4eff;
+    background-color: #f2f4f5;
+    cursor: auto;
+
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.openModal {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 32px;
+    background-color: #f2f4f5;
+    max-width: 50px;
+    height: 44px;
+}
+
+.addCategories {
+    width: 100%;
+}
