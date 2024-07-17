@@ -5,7 +5,7 @@ import { IManga } from '../../interfaces/interfaces.ts';
 
 const Manga = ({ manga }: IManga) => {
   if (!manga) return null;
-  const numberOfChapter = findCorrectChapter(manga);
+  const numberOfChapter = findCorrectChapter(manga.chapter);
   return (
     <li className={styles.item}>
       <div className={styles.info}>
@@ -16,11 +16,21 @@ const Manga = ({ manga }: IManga) => {
         </div>
         <h1 className={styles.title}>{manga.title}</h1>
         <div>
-          {numberOfChapter !== null && (
+          {numberOfChapter !== null ? (
             <Link
               to={`https://mangahook.vercel.app/manga/${manga.id}/chapter-${numberOfChapter}`}
             >
-              <p className={styles.chapter}>{manga.chapter}</p>
+              {manga.chapter ? (
+                <p className={styles.chapter}>{manga.chapter}</p>
+              ) : (
+                <p className={styles.chapter}>Chapter: 1</p>
+              )}
+            </Link>
+          ) : (
+            <Link
+              to={`https://mangahook.vercel.app/manga/${manga.id}/chapter-${numberOfChapter}`}
+            >
+              <p className={styles.chapter}>Chapter: 1</p>
             </Link>
           )}
         </div>
