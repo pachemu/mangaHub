@@ -1,17 +1,12 @@
 import { useEffect, useState, useMemo } from 'react';
-import { IMangaList } from '../../interfaces/interfaces.ts';
+import { IMangaList } from '../../interfaces/interfaces';
 
 interface FetchFunction<P, T> {
   (params: P): Promise<T>;
 }
 
 interface UseFetchResult<T> {
-  data:
-    | IMangaList
-    | T
-    | {
-        mangaList?: [];
-      };
+  data: T; // Adjust data type as per your API response
   error: Error | null;
   isLoading: boolean;
   categories: Array<object> | null;
@@ -23,14 +18,7 @@ export const useFetch = <T, P>(
 ): UseFetchResult<T> => {
   const [error, setError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [data, setData] = useState<
-    | object
-    | IMangaList
-    | T
-    | {
-        mangaList?: [];
-      }
-  >({});
+  const [data, setData] = useState<T>(null); // Adjust initial state as per your API response
   const [categories, setCategories] = useState<Array<object> | null>(null);
 
   const memoizedParams: P = useMemo(() => params, [params]);

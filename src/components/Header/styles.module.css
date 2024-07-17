@@ -1,8 +1,10 @@
 .header {
+    background-color: #222; /* Темный фон для заголовка и подвала */
+    color: #fff; /* Светлый текст */
+    padding: 1rem 0;
+    text-align: center;
     display: flex;
     width: 100%;
-    padding: 12px 24px;
-    background-color: #1e1e1e;
     flex-direction: column;
     gap: 17px;
 }

@@ -18,8 +18,9 @@ interface Props {
 }
 
 const Banner = ({ item }: Props) => {
-  if (!item) return null;
+    if (item.length < 1) return null;
   const manga = item[0];
+    console.log('manga', item);
   return (
     <div className={styles.banner}>
       <Image item={manga} />
@@ -33,8 +34,8 @@ const Banner = ({ item }: Props) => {
   );
 };
 const BannerWithSkeleton = withSkeleton({
-    Component: Banner,
-    type: 'banner',
-    count: 1,
+  Component: Banner,
+  type: 'banner',
+  count: 1,
 });
 export default BannerWithSkeleton;
