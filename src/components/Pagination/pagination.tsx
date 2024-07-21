@@ -1,5 +1,5 @@
 import styles from './styles.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import { getPaginationRange } from '../../helpers/getPaginationRange.ts';
 
 interface Props {
@@ -13,6 +13,8 @@ const Pagination = ({ totalPages, category, page = '1' }: Props) => {
   const pages = getPaginationRange(currentPage, totalPages);
   const previousPage = currentPage - 1;
   const nextPage = currentPage + 1;
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get('post');
   return (
     <div className={styles.pagination}>
       <NavLink to={`/${previousPage}/${category}`}>
@@ -22,8 +24,10 @@ const Pagination = ({ totalPages, category, page = '1' }: Props) => {
       </NavLink>
       <div className={styles.list}>
         {pages.map((page) => (
-          // eslint-disable-next-line react/jsx-key
-          <NavLink to={`/${page}/${category}`} key={page}>
+          <NavLink
+            to={`/${page}/${category}${search ? `?post=${search}` : ''}`}
+            key={page}
+          >
             <button
               key={page}
               className={`${styles.number} ${page === currentPage ? styles.active : ''}`}

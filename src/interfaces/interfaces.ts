@@ -13,8 +13,8 @@ export interface IManga {
     title: string;
     id: string;
     image: string;
-    view: string;
-    chapter: string;
+    view?: string;
+    chapter?: string;
   };
 }
 
@@ -22,6 +22,6 @@ export interface SoloManga {
   title: string;
   id: string;
   image: string;
-  view: string;
-  chapter: string;
+  view?: string;
+  chapter?: string;
 }

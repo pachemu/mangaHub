@@ -7,6 +7,7 @@ interface Props {
   page: string | undefined;
   isLoading: boolean;
   mangas: [] | undefined;
+  mangas: [];
 }
 
 const PaginationWithManga = ({

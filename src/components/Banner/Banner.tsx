@@ -23,6 +23,8 @@ const Banner = ({ item }: Props) => {
   const manga = findPopularManga(item);
   if (!manga) return null;
   const numberOfChapter = findCorrectChapter(manga.chapter);
+    if (item.length < 1) return null;
+  const manga = item[0];
   return (
     <div className={styles.banner}>
       <Image item={manga} />

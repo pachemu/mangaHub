@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
-import { IMangaList } from '../../interfaces/interfaces.ts';
+import { IMangaList } from '../../interfaces/interfaces';
 
 interface FetchFunction<P, T> {
   (params: P): Promise<T>;
@@ -15,6 +15,7 @@ interface UseFetchResult<T> {
           totalPages: 100 | number;
         };
       };
+  data: T; 
   error: Error | null;
   isLoading: boolean;
   categories: Array<object> | null;
@@ -37,6 +38,7 @@ export const useFetch = <T, P>(
         };
       }
   >({});
+  const [data, setData] = useState<T>(null); // Adjust initial state as per your API response
   const [categories, setCategories] = useState<Array<object> | null>(null);
 
   const memoizedParams: P = useMemo(() => params, [params]);

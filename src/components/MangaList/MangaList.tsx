@@ -11,6 +11,7 @@ const MangaList = ({ mangas }: Props) => {
   return (
     <ul className={styles.list}>
       {mangas.slice(0, 24).map((manga: SoloManga) => {
+      {mangas.slice(1, 20).map((manga: SoloManga) => {
         return <Manga manga={manga} key={manga.id} />;
       })}
     </ul>
@@ -20,6 +21,6 @@ const MangaList = ({ mangas }: Props) => {
 const MangaListWithSkeleton = withSkeleton({
   Component: MangaList,
   type: 'item',
-  count: 23,
+  count: 20,
 });
 export default MangaListWithSkeleton;

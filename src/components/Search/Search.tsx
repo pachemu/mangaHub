@@ -29,6 +29,7 @@ const Search = ({ setSearchParams, postQuery, page = 1, setData }: Props) => {
     try {
       const englishSearch = reverseToEnglish(search);
       setSearchParams({ post: englishSearch });
+      setSearchParams({ post: search });
       const data = await searchManga(search, page);
       setData(data);
     } catch (error) {
