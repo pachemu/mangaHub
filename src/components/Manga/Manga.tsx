@@ -16,6 +16,11 @@ const Manga = ({ manga }: IManga) => {
         </div>
         <h1 className={styles.title}>{manga.title}</h1>
         <div>
+          <Link
+            to={`https://mangahook.vercel.app/manga/${manga.id}/chapter-${numberOfChapter}`}
+          >
+            <p className={styles.chapter}>Chapter : {numberOfChapter}</p>
+
           {numberOfChapter !== null ? (
             <Link
               to={`https://mangahook.vercel.app/manga/${manga.id}/chapter-${numberOfChapter}`}
@@ -34,7 +39,7 @@ const Manga = ({ manga }: IManga) => {
             </Link>
           )}
         </div>
-        <p className={styles.views}>Views: {manga.view}</p>
+        <p className={styles.views}>Views: {manga.view ? manga.view : '1k'}</p>
       </div>
     </li>
   );

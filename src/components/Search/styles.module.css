@@ -5,6 +5,7 @@
     align-items: center;
     width: 100%;
     flex-direction: column;
+    margin-bottom: 15px;
 }
 
 .form {

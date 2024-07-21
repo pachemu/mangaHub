@@ -8,7 +8,6 @@ const BaseLayout = () => {
       <main>
         <Outlet />
       </main>
-      <footer>Footer Component</footer>
     </div>
   );
 };

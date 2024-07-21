@@ -6,6 +6,7 @@ interface Props {
   category: string | undefined;
   page: string | undefined;
   isLoading: boolean;
+  mangas: [] | undefined;
   mangas: [];
 }
 

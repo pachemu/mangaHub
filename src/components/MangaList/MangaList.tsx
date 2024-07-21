@@ -10,6 +10,7 @@ interface Props {
 const MangaList = ({ mangas }: Props) => {
   return (
     <ul className={styles.list}>
+      {mangas.slice(0, 24).map((manga: SoloManga) => {
       {mangas.slice(1, 20).map((manga: SoloManga) => {
         return <Manga manga={manga} key={manga.id} />;
       })}

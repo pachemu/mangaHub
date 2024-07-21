@@ -6,7 +6,16 @@ interface FetchFunction<P, T> {
 }
 
 interface UseFetchResult<T> {
-  data: T; // Adjust data type as per your API response
+  data:
+    | IMangaList
+    | T
+    | {
+        mangaList?: [];
+        metaData: {
+          totalPages: 100 | number;
+        };
+      };
+  data: T; 
   error: Error | null;
   isLoading: boolean;
   categories: Array<object> | null;
@@ -18,6 +27,17 @@ export const useFetch = <T, P>(
 ): UseFetchResult<T> => {
   const [error, setError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [data, setData] = useState<
+    | object
+    | IMangaList
+    | T
+    | {
+        mangaList?: [];
+        metaData: {
+          totalPages: number | 100;
+        };
+      }
+  >({});
   const [data, setData] = useState<T>(null); // Adjust initial state as per your API response
   const [categories, setCategories] = useState<Array<object> | null>(null);
 

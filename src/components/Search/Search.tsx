@@ -2,6 +2,8 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { searchManga } from '../../api/getMangaList.js';
 import styles from './styles.module.css';
 import { SetURLSearchParams } from 'react-router-dom';
+import { transliterate } from 'transliteration';
+import { reverseToEnglish } from '../../helpers/reverseToEnglish.ts';
 
 interface Props {
   setSearchParams: SetURLSearchParams;
@@ -25,6 +27,8 @@ const Search = ({ setSearchParams, postQuery, page = 1, setData }: Props) => {
     }
 
     try {
+      const englishSearch = reverseToEnglish(search);
+      setSearchParams({ post: englishSearch });
       setSearchParams({ post: search });
       const data = await searchManga(search, page);
       setData(data);
