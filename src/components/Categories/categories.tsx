@@ -24,7 +24,7 @@ const Categories = ({ categories, selectedCategory, currentPage }: Props) => {
     setIsModalOpen(false);
   };
   useOnClickOutside(modalRef, closeModal);
-
+  if (!categories) return 0;
   return (
     <div className={styles.categories}>
       {categories.slice(0, 19).map((category) => (

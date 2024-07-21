@@ -4,52 +4,48 @@ import { useFetch } from '../../helpers/hooks/useFetch.ts';
 import { getMangaList } from '../../api/getMangaList.ts';
 import styles from './styles.module.css';
 import Banner from '../../components/Banner/Banner.tsx';
-import MangaList from '../../components/MangaList/MangaList.tsx';
-import Pagination from '../../components/Pagination/pagination.tsx';
 import Categories from '../../components/Categories/categories.tsx';
-import Search from '../../components/Search/Search.tsx';
-import { TOTAL_PAGES } from '../../constants/constants.ts';
+import PaginationWithManga from '../../components/PaginationWithManga/PaginationWithManga.tsx';
 
 const Main = () => {
-  const [searchParams, setSearchParams] = useSearchParams({});
   let { page, category } = useParams();
-  const type = searchParams.get('type') || 'topview';
   const mangaListParams = useMemo(
     () => ({
       page: page || 1,
       category: category || 'all',
-      type: type || 'newest',
+      type: 'newest',
     }),
-    [page, category, type],
+    [page, category],
   );
   const { data, error, isLoading, categories } = useFetch<
     {
       mangaList: [];
+      metaData: {
+        totalPages: number | 100;
+      };
     },
     typeof mangaListParams
   >(getMangaList, mangaListParams);
-  const postQuery = searchParams.get('post');
 
   return (
     <main className={styles.main}>
       {error && <div>{error.name}</div>}
-      <Search
-        setSearchParams={setSearchParams}
-        postQuery={postQuery}
-        page={page}
-      />
       <Banner isLoading={isLoading} item={data.mangaList} />
-      {categories && (
-        <Categories
+      <Categories
+        isLoading={isLoading}
+        categories={categories}
+        selectedCategory={category}
+        currentPage={page}
+      />
+      {data.metaData && (
+        <PaginationWithManga
+          mangas={data.mangaList}
+          totalPages={data.metaData.totalPages}
+          category={category}
+          page={page}
           isLoading={isLoading}
-          categories={categories}
-          selectedCategory={category}
-          currentPage={page}
         />
       )}
-      <Pagination totalPages={TOTAL_PAGES} category={category} page={page} />
-      <MangaList isLoading={isLoading} mangas={data.mangaList} />
-      <Pagination category={category} totalPages={TOTAL_PAGES} page={page} />
     </main>
   );
 };

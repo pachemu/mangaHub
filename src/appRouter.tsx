@@ -1,9 +1,7 @@
-// eslint-disable-next-line no-unused-vars
-import { createBrowserRouter, Navigate } from 'react-router-dom';
-// eslint-disable-next-line no-unused-vars
+import { createBrowserRouter } from 'react-router-dom';
 import Main from './pages/Main/Main.tsx';
 import BaseLayout from './layouts/BaseLayout.tsx';
-import { MangaPage } from './pages/news/ui/index.ts';
+import SearchPage from './pages/SearchPage/SearchPage.tsx';
 
 const appRouter = createBrowserRouter([
   {
@@ -12,16 +10,8 @@ const appRouter = createBrowserRouter([
     errorElement: <div>Error :(</div>,
     children: [
       {
-        path: '/',
-        element: <Navigate to={'/1/all'} replace={true} />,
-      },
-      {
-        path: '/manga/:id',
-        element: <MangaPage />,
-      },
-      {
-        path: '/:page',
-        element: <Navigate to={'/1/all'} replace={true} />,
+        path: '/search/:page',
+        element: <SearchPage />,
       },
       {
         path: '/:page/:category',
@@ -30,4 +20,5 @@ const appRouter = createBrowserRouter([
     ],
   },
 ]);
+
 export default appRouter;

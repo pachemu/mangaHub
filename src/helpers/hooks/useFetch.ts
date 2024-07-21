@@ -11,6 +11,9 @@ interface UseFetchResult<T> {
     | T
     | {
         mangaList?: [];
+        metaData: {
+          totalPages: 100 | number;
+        };
       };
   error: Error | null;
   isLoading: boolean;
@@ -29,6 +32,9 @@ export const useFetch = <T, P>(
     | T
     | {
         mangaList?: [];
+        metaData: {
+          totalPages: number | 100;
+        };
       }
   >({});
   const [categories, setCategories] = useState<Array<object> | null>(null);
