@@ -3,32 +3,39 @@ import styles from './styles.module.css';
 import Banner from '../../components/Banner/Banner.tsx';
 import Search from '../../components/Search/Search.tsx';
 import PaginationWithManga from '../../components/PaginationWithManga/PaginationWithManga.tsx';
-import { useSearch } from '../../helpers/hooks/useSearch.ts';
+import { useGetMangaBySearchQuery } from '../../store/services/mangaApi.ts';
+import { useGetManga } from '../../helpers/hooks/useGetManga.ts';
+import { useMemo } from 'react';
 
 const SearchPage = () => {
-  let { page, category } = useParams();
+  let { page = '1', category } = useParams(); // Установка значения по умолчанию для page
   const [searchParams, setSearchParams] = useSearchParams({});
-  const postQuery = searchParams.get('post');
-  const { data, error, isLoading, setData } = useSearch(postQuery, {
-    page,
-    category,
-  });
+  const postQuery = searchParams.get('post') || 'One Piece';
+  const mangaListParams = useMemo(
+    () => ({
+      page: page || '1',
+      search: postQuery || '',
+    }),
+    [page, postQuery],
+  );
+
+  const { data, error, isLoading } = useGetManga(
+    useGetMangaBySearchQuery,
+    mangaListParams,
+  );
 
   return (
     <main className={styles.main}>
-      <Search
-        setSearchParams={setSearchParams}
-        postQuery={postQuery}
-        page={page}
-        setData={setData}
-      />
-      <Banner isLoading={isLoading} item={data.mangaList} />
+      <Search setSearchParams={setSearchParams} postQuery={postQuery} />
+      {error ? <div>{String(error)}</div> : null}
+      <Banner isLoading={isLoading} item={data?.mangaList} />
       <PaginationWithManga
-        totalPages={100}
+        postQuery={postQuery}
+        totalPages={data?.totalPages || 100}
         category={category}
         page={page}
         isLoading={isLoading}
-        mangas={data.mangaList}
+        mangas={data?.mangaList}
       />
     </main>
   );

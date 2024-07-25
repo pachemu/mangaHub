@@ -4,13 +4,15 @@ import withSkeleton from '../../helpers/hocs/withSkeleton.tsx';
 import { SoloManga } from '../../interfaces/interfaces.ts';
 
 interface Props {
-  mangas: [SoloManga];
+  mangas: SoloManga[] | [];
+  isLoading: boolean;
 }
 
-const MangaList = ({ mangas }: Props) => {
+const MangaList = ({ mangas, isLoading }: Props) => {
+  console.log(mangas);
   return (
     <ul className={styles.list}>
-      {mangas.slice(0, 24).map((manga: SoloManga) => {
+      {mangas?.slice(0, 24).map((manga: SoloManga) => {
         return <Manga manga={manga} key={manga.id} />;
       })}
     </ul>

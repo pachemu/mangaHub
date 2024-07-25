@@ -1,26 +1,40 @@
 import Pagination from '../Pagination/pagination.tsx';
-import MangaList from '../MangaList/MangaList.tsx';
+import MangaListWithSkeleton from '../MangaList/MangaList.tsx';
 
 interface Props {
   totalPages: number;
   category: string | undefined;
   page: string | undefined;
   isLoading: boolean;
-  mangas: [] | undefined;
+  mangas: {
+    mangaList: [];
+  };
+  postQuery: string;
 }
 
 const PaginationWithManga = ({
   totalPages = 100,
   category,
   page,
-  isLoading,
   mangas,
+  isLoading,
+  postQuery,
 }: Props) => {
   return (
     <div>
-      <Pagination totalPages={totalPages} category={category} page={page} />
-      <MangaList isLoading={isLoading} mangas={mangas} />
-      <Pagination category={category} totalPages={totalPages} page={page} />
+      <Pagination
+        postQuery={postQuery}
+        totalPages={totalPages}
+        category={category}
+        page={page}
+      />
+      <MangaListWithSkeleton isLoading={isLoading} mangas={mangas} />
+      <Pagination
+        postQuery={postQuery}
+        category={category}
+        totalPages={totalPages}
+        page={page}
+      />
     </div>
   );
 };

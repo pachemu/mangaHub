@@ -1,14 +1,15 @@
-import { useMemo } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
-import { useFetch } from '../../helpers/hooks/useFetch.ts';
-import { getMangaList } from '../../api/getMangaList.ts';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './styles.module.css';
-import Banner from '../../components/Banner/Banner.tsx';
-import Categories from '../../components/Categories/categories.tsx';
 import PaginationWithManga from '../../components/PaginationWithManga/PaginationWithManga.tsx';
+import { useGetMangaQuery } from '../../store/services/mangaApi.ts';
+import BannerWithSkeleton from '../../components/Banner/Banner.tsx';
+import MangaListWithSkeleton from '../../components/MangaList/MangaList.tsx';
+import CategoriesWithSkeleton from '../../components/Categories/categories.tsx';
+import { useGetManga } from '../../helpers/hooks/useGetManga.ts';
 
 const Main = () => {
-  let { page, category } = useParams();
+  const { page, category } = useParams();
   const mangaListParams = useMemo(
     () => ({
       page: page || 1,
@@ -17,35 +18,40 @@ const Main = () => {
     }),
     [page, category],
   );
-  const { data, error, isLoading, categories } = useFetch<
-    {
-      mangaList: [];
-      metaData: {
-        totalPages: number | 100;
-      };
-    },
-    typeof mangaListParams
-  >(getMangaList, mangaListParams);
+
+  // const [loading, setLoading] = useState(true);
+  // const { data, error, isLoading, refetch } = useGetMangaQuery(mangaListParams);
+  //
+  // useEffect(() => {
+  //   setLoading(true);
+  //   refetch().finally(() => setLoading(false));
+  // }, [mangaListParams, refetch]);
+  const { data, error, isLoading } = useGetManga(
+    useGetMangaQuery,
+    mangaListParams,
+  );
 
   return (
     <main className={styles.main}>
-      {error && <div>{error.name}</div>}
-      <Banner isLoading={isLoading} item={data.mangaList} />
-      <Categories
+      {error && <div>{error.message}</div>}
+      <BannerWithSkeleton isLoading={isLoading} item={data?.mangaList || []} />
+      <CategoriesWithSkeleton
         isLoading={isLoading}
-        categories={categories}
+        categories={data?.metaData.category}
         selectedCategory={category}
         currentPage={page}
       />
-      {data.metaData && (
-        <PaginationWithManga
-          mangas={data.mangaList}
-          totalPages={data.metaData.totalPages}
-          category={category}
-          page={page}
-          isLoading={isLoading}
-        />
-      )}
+      <PaginationWithManga
+        mangas={data?.mangaList}
+        totalPages={data?.metaData?.totalPages || 100}
+        category={category}
+        page={page}
+        isLoading={isLoading}
+      />
+      <MangaListWithSkeleton
+        isLoading={isLoading}
+        mangas={data?.mangaList || []}
+      />
     </main>
   );
 };

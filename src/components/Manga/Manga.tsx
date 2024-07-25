@@ -6,7 +6,6 @@ import { IManga } from '../../interfaces/interfaces.ts';
 const Manga = ({ manga }: IManga) => {
   if (!manga) return null;
   const numberOfChapter = findCorrectChapter(manga.chapter);
-  console.log(numberOfChapter);
   return (
     <li className={styles.item}>
       <div className={styles.info}>

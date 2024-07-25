@@ -1,6 +1,9 @@
 module.exports = {
     root: true,
-    env: {browser: true, es2020: true},
+    env: {
+        browser: true,
+        es2020: true,
+    },
     extends: [
         'eslint:recommended',
         'plugin:react/recommended',
@@ -9,8 +12,15 @@ module.exports = {
         'plugin:prettier/recommended', // Добавлено для интеграции Prettier
     ],
     ignorePatterns: ['dist', '.eslintrc.cjs'],
-    parserOptions: {ecmaVersion: 'latest', sourceType: 'module'},
-    settings: {react: {version: '18.2'}},
+    parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+    },
+    settings: {
+        react: {
+            version: 'detect',
+        },
+    },
     plugins: ['react-refresh', 'prettier'], // Добавлен плагин Prettier
     rules: {
         'react/jsx-no-target-blank': 'off',
@@ -20,4 +30,4 @@ module.exports = {
         ],
         'prettier/prettier': 'error', // Добавлено правило Prettier
     },
-}
+};

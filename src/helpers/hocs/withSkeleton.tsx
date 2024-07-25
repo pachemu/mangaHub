@@ -3,7 +3,6 @@ import { ElementType } from 'react';
 
 export interface SkeletonProps {
   isLoading: boolean;
-
   [key: string]: any;
 }
 

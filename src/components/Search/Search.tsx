@@ -1,23 +1,15 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import { searchManga } from '../../api/getMangaList.js';
+import { ChangeEvent, useState } from 'react';
 import styles from './styles.module.css';
 import { SetURLSearchParams } from 'react-router-dom';
-import { transliterate } from 'transliteration';
 import { reverseToEnglish } from '../../helpers/reverseToEnglish.ts';
 
 interface Props {
   setSearchParams: SetURLSearchParams;
   postQuery: string | null;
-  page: string | undefined | number;
-  setData: (data: any) => void;
 }
 
-const Search = ({ setSearchParams, postQuery, page = 1, setData }: Props) => {
+const Search = ({ setSearchParams, postQuery }: Props) => {
   const [search, setSearch] = useState<string>(postQuery || '');
-
-  useEffect(() => {
-    setSearch(postQuery || '');
-  }, [postQuery]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,15 +17,8 @@ const Search = ({ setSearchParams, postQuery, page = 1, setData }: Props) => {
       setSearchParams('');
       return;
     }
-
-    try {
-      const englishSearch = reverseToEnglish(search);
-      setSearchParams({ post: englishSearch });
-      const data = await searchManga(search, page);
-      setData(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
+    const englishSearch = reverseToEnglish(search);
+    setSearchParams({ post: englishSearch });
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
