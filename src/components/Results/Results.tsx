@@ -8,14 +8,13 @@ interface Result {
 }
 
 type Props = {
-  results: Result[];
+  results: Result[] | null;
 };
 
 const Results = ({ results }: Props) => {
-  if (results.length == 0) {
+  if (!results) {
     return <div>Нет результатов</div>;
   }
-
   return (
     <div className={styles.results}>
       {results.map((result: Result) => (

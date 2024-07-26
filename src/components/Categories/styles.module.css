@@ -1,13 +1,12 @@
 .categories {
     display: flex;
     width: 100%;
-    gap: 15px;
+    gap: 8px;
     align-items: flex-start;
     box-sizing: border-box;
     overflow-x: auto;
     scrollbar-width: none;
     flex-wrap: wrap;
-    justify-content: center;
 }
 
 .item, .active {

@@ -21,24 +21,6 @@ const Manga = ({ manga }: IManga) => {
           >
             <p className={styles.chapter}>Chapter : {numberOfChapter}</p>
           </Link>
-
-          {numberOfChapter !== null ? (
-            <Link
-              to={`https://mangahook.vercel.app/manga/${manga.id}/chapter-${numberOfChapter}`}
-            >
-              {manga.chapter ? (
-                <p className={styles.chapter}>{manga.chapter}</p>
-              ) : (
-                <p className={styles.chapter}>Chapter: 1</p>
-              )}
-            </Link>
-          ) : (
-            <Link
-              to={`https://mangahook.vercel.app/manga/${manga.id}/chapter-${numberOfChapter}`}
-            >
-              <p className={styles.chapter}>Chapter: 1</p>
-            </Link>
-          )}
         </div>
         <p className={styles.views}>Views: {manga.view ? manga.view : '1k'}</p>
       </div>
