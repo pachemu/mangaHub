@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './styles.module.css';
 import PaginationWithManga from '../../components/PaginationWithManga/PaginationWithManga.tsx';
