@@ -1,14 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 
 interface Params {
-  page: string;
+  page: string | number;
   search?: string;
   category?: string;
   type?: string;
 }
 
 export const useGetManga = (func: Function, params: Params) => {
-  console.log('start hook');
   const mangaParams = useMemo(
     () => ({
       page: params.page,

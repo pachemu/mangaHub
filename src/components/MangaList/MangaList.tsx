@@ -8,7 +8,7 @@ interface Props {
   isLoading: boolean;
 }
 
-const MangaList = ({ mangas, isLoading }: Props) => {
+const MangaList = ({ mangas }: Props) => {
   console.log(mangas);
   return (
     <ul className={styles.list}>

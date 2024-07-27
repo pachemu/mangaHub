@@ -9,7 +9,7 @@ interface Props {
   mangas: {
     mangaList: [];
   };
-  postQuery?: string;
+  postQuery: string | number | boolean;
 }
 
 const PaginationWithManga = ({

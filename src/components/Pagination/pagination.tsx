@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './styles.module.css';
 import { getPaginationRange } from '../../helpers/getPaginationRange.ts';
@@ -7,7 +6,7 @@ interface Props {
   totalPages: number;
   category?: string;
   page?: string;
-  postQuery?: string;
+  postQuery: string | number | boolean;
 }
 
 const Pagination = ({ totalPages, category, page = '1', postQuery }: Props) => {
@@ -16,7 +15,7 @@ const Pagination = ({ totalPages, category, page = '1', postQuery }: Props) => {
   const previousPage = currentPage - 1;
   const nextPage = currentPage + 1;
 
-  const buildLink = (page: number, postQuery) => {
+  const buildLink = (page: number, postQuery: string | number | boolean) => {
     return category !== undefined
       ? `/${page}/${category}`
       : `/search/${page}?post=${encodeURIComponent(postQuery)}`;

@@ -9,7 +9,9 @@ interface Params {
 
 export const mangaApi = createApi({
   reducerPath: 'mangaApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://mangahub-mx3e.onrender.com/api',
+  }),
   endpoints: (builder) => ({
     getManga: builder.query<IMangaList, Params>({
       query: (params) => ({

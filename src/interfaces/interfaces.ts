@@ -8,9 +8,6 @@ export interface IMangaList {
   mangaList: [];
 }
 
-export interface IMangaListBySearch {
-  meta;
-}
 export interface IManga {
   manga: {
     title: string;

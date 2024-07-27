@@ -19,13 +19,6 @@ const Main = () => {
     [page, category],
   );
 
-  // const [loading, setLoading] = useState(true);
-  // const { data, error, isLoading, refetch } = useGetMangaQuery(mangaListParams);
-  //
-  // useEffect(() => {
-  //   setLoading(true);
-  //   refetch().finally(() => setLoading(false));
-  // }, [mangaListParams, refetch]);
   const { data, error, isLoading } = useGetManga(
     useGetMangaQuery,
     mangaListParams,
@@ -42,6 +35,7 @@ const Main = () => {
         currentPage={page}
       />
       <PaginationWithManga
+        postQuery={''}
         mangas={data?.mangaList}
         totalPages={data?.metaData?.totalPages || 100}
         category={category}
