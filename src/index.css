@@ -85,8 +85,7 @@ select {
 }
 
 body {
-  background-color: #f4f4f9; /* Светлый фон */
-  color: #333; /* Темный текст */
+  background-color: #1e1e1e;
   font-family: 'Helvetica Neue', sans-serif;
   line-height: 1.6;
 }
