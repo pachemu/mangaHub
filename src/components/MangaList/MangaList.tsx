@@ -5,14 +5,12 @@ import { SoloManga } from '../../interfaces/interfaces.ts';
 
 interface Props {
   mangas: SoloManga[] | [];
-  isLoading: boolean;
 }
 
 const MangaList = ({ mangas }: Props) => {
-  console.log(mangas);
   return (
     <ul className={styles.list}>
-      {mangas?.slice(0, 24).map((manga: SoloManga) => {
+      {mangas.slice(0, 24).map((manga: SoloManga) => {
         return <Manga manga={manga} key={manga.id} />;
       })}
     </ul>
