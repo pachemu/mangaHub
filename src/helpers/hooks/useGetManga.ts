@@ -24,11 +24,8 @@ export const useGetManga = (func: Function, params: Params) => {
   useEffect(() => {
     const fetch = async () => {
       setIsLoading(true);
-      console.log('start refetch');
       await refetch();
-      console.log('end refetch');
       setIsLoading(false);
-      console.log('params', params);
     };
     fetch();
   }, [mangaParams, data]);
