@@ -42,10 +42,6 @@ const Main = () => {
         page={page}
         isLoading={isLoading}
       />
-      <MangaListWithSkeleton
-        isLoading={isLoading}
-        mangas={data?.mangaList || []}
-      />
     </main>
   );
 };
