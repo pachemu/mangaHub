@@ -3,7 +3,6 @@
     column-gap: 5px;
     display: flex;
     flex-direction: column ;
-    height: 600px;
 }
 .title {
     font-size: 14px;

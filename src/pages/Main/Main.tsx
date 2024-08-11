@@ -4,7 +4,6 @@ import styles from './styles.module.css';
 import PaginationWithManga from '../../components/PaginationWithManga/PaginationWithManga.tsx';
 import { useGetMangaQuery } from '../../store/services/mangaApi.ts';
 import BannerWithSkeleton from '../../components/Banner/Banner.tsx';
-import MangaListWithSkeleton from '../../components/MangaList/MangaList.tsx';
 import CategoriesWithSkeleton from '../../components/Categories/categories.tsx';
 import { useGetManga } from '../../helpers/hooks/useGetManga.ts';
 
